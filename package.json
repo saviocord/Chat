@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "socket.io": "^1.5.1",
+    "bootstrap": "^4.0.0-alpha.5",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://RicardoVentrilho@bitbucket.org/RicardoVentrilho/nodejs-chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/RicardoVentrilho/nodejs-chat#readme"
+}
