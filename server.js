@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
@@ -9,6 +11,18 @@ app.get('/', function(req, res) {
 	var dir = '/views';
 	var file = '/index.html';
 	res.sendFile( __dirname + dir + file );
+});
+
+io.on('connection', function(socket){
+	console.log('Usuario conectado: '+socket.id);
+    socket.on('chat message', function(msg, msg_pvd){
+		console.log('Usuario:'+socket.id+'  msg:'+msg+'  msg_pvd:'+msg_pvd);  
+		if (msg) {
+			io.emit('chat message','mensagem publica: '+ msg);
+		} else{
+			io.to(socket.id).emit('chat message','mensagem privada: '+ msg_pvd);
+		}
+    });
 });
 
 app.listen(8081, function() {
