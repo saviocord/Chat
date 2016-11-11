@@ -3,11 +3,13 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+app.use('/public', express.static('public'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.get('/', function(req, res) {
+	
 	var dir = '/views';
 	var file = '/index.html';
 	res.sendFile( __dirname + dir + file );
@@ -23,8 +25,11 @@ io.on('connection', function(socket){
 			io.to(socket.id).emit('chat message','mensagem privada: '+ msg_pvd);
 		}
     });
+	socket.on('adduser', (username) => {
+		console.log('add user:'+username);
+	});
 });
 
-app.listen(8081, function() {
+http.listen(8081, function() {
 	console.log('Executando o servidor...');
 });

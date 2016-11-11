@@ -6,14 +6,9 @@
   <script src="/js/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      $('#myModal').modal('show');
-      $('a').click(function(){
-        $('#myModal').modal('show');
-      });
-    });
-  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/public/script.js"></script>
+
 </head>
 <body>
 
@@ -69,7 +64,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-primary" id='btn_login'>Login</button>
           </div>
         </div>
       </div>
