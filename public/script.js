@@ -1,25 +1,38 @@
+var name;
 
-//função para fazer a busca dos nomes aleatorios fica aqui
 function getName() {
-  return 'Nome do Usuario';
+  var name = list_names[Math.floor(Math.random() * list_names.length)];
+  return name;
 }
 
-var name = getName();
+name = getName();
 
 var socket = io.connect('/');
 
-socket.on('connect', function () {
-  socket.emit('adduser', name);
-});
-
-/*
 //arquivo scrips que estava na index.html
 $(function () {
-    // when the client hits ENTER on their keyboard
     $(document).ready(function(){
+	  $('#usr').val(name);
       $('#myModal').modal('show');
       $('a').click(function(){
         $('#myModal').modal('show');
       });
+	  $('#btn_login').click(function(){
+		name = $('#usr').val();
+		if(name != '') {
+			//$('#myModal').modal('hide');
+			socket.emit('adduser', name);
+		}
+	  });
     });
-}); */
+});
+
+socket.on('user exist', function (n) {
+  alert('usuario '+n+' ja existe.');
+});
+
+socket.on('user add', function (n) {
+  $('#myModal').modal('hide');
+});
+
+

@@ -1,4 +1,4 @@
-window.names = [
+list_names = [
 	'Aricléia Café Chá',
 	'Adolph Hitler Souza Lima',
 	'Adolfo Hitler Modesto Costa',

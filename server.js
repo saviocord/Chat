@@ -3,6 +3,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+const usernames = {};
+
 app.use('/public', express.static('public'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
@@ -26,8 +28,20 @@ io.on('connection', function(socket){
 		}
     });
 	socket.on('adduser', (username) => {
-		console.log('add user:'+username);
+		if (usernames[username]){
+			console.log('usuario ja existe');
+			io.to(socket.id).emit('user exist',username);
+		} else {
+			socket.username = username;
+			usernames[username] = username;
+			io.to(socket.id).emit('user add',username);
+			console.log('add user:'+username);
+		}
 	});
+	socket.on('disconnect', () => {
+		delete usernames[socket.username];
+		console.log('Usuario desconectado: '+socket.username);
+    });
 });
 
 http.listen(8081, function() {
