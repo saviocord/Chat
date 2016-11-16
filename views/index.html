@@ -16,36 +16,27 @@
   <nav class="navbar navbar-inverse">
     <div class="container">
       <div class="navbar-header">
+	    <i class="glyphicon glyphicon-user"></i>
         <a class="navbar-brand" href="http://localhost:8081">Nodejs Chat</a>
       </div>
-      <ul class="nav navbar-nav navbar-right">
-        <a class="navbar-brand" href="#">Logout</a>
+      <ul class="nav navbar-nav navbar-right" id="name_user">
+
       </ul>
     </div>
   </nav>
 
   <div class="jumbotron">
-    <div class="container">
-      <h1>Users:</h1>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <span class="badge">14</span>
-          <a href="#">Sávio Cordeiro</a>
-        </li>
-        <li class="list-group-item">
-          <span class="badge">99</span>
-          <a href="#">José Ricardo</a>
-        </li>
-        <li class="list-group-item">
-          <span class="badge">2</span>
-          <a href="#">Wictor Machado</a>
-        </li>
-        <li class="list-group-item">
-          <span class="badge">4</span>
-          <a href="#">Lucas Martins</a>
-        </li>
+    <div class="container" >
+      <h2>Users:</h2>
+      <ul class="list-group" id="list_users">
       </ul>
     </div>
+  </div>
+  
+  <div class="container">
+	<ul id="conversation" style="list-style-type:none"></ul>
+	<input type="text" class="form-control" placeholder="send message" id="input_text">
+	<button type="button" class="btn btn-primary" id='btn_message'>Send</button>
   </div>
 
   <!-- Login -->

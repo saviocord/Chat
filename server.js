@@ -35,12 +35,17 @@ io.on('connection', function(socket){
 			socket.username = username;
 			usernames[username] = username;
 			io.to(socket.id).emit('user add',username);
+			io.emit('updateusers',usernames);
 			console.log('add user:'+username);
 		}
 	});
 	socket.on('disconnect', () => {
 		delete usernames[socket.username];
-		console.log('Usuario desconectado: '+socket.username);
+		io.emit('updateusers', usernames);
+		console.log('Usuario desconectado: '+socket.id);
+    });
+	socket.on('sendchat', (message) => {
+        io.emit('updatechat', socket.username, message);
     });
 });
 
