@@ -6,12 +6,12 @@ var io = require('socket.io')(http);
 const usernames = {};
 
 app.use('/public', express.static('public'));
-app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/js', express.static(__dirname + '/public/bootstrap/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/css', express.static(__dirname + '/public/bootstrap/css'));
 
 app.get('/', function(req, res) {
-	
+
 	var dir = '/views';
 	var file = '/index.html';
 	res.sendFile( __dirname + dir + file );
@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
 io.on('connection', function(socket){
 	console.log('Usuario conectado: '+socket.id);
     socket.on('chat message', function(msg, msg_pvd){
-		console.log('Usuario:'+socket.id+'  msg:'+msg+'  msg_pvd:'+msg_pvd);  
+		console.log('Usuario:'+socket.id+'  msg:'+msg+'  msg_pvd:'+msg_pvd);
 		if (msg) {
 			io.emit('chat message','mensagem publica: '+ msg);
 		} else{

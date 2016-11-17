@@ -1,11 +1,11 @@
-Repositorio referente a um Chat Interativo para fins Academicos.
+# **Repositório referente a um Chat Interativo para fins Acadêmicos.** #
 
-#instalação
+ **Instale** nodejs.
 
- download e instalação do node js
+ **Execute** no terminal:
 
-   https://nodejs.org/en/
-
- comandos no CMD
+```
+#!javascript
 
    npm install
+```
