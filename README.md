@@ -8,4 +8,9 @@ Repositorio referente a um Chat Interativo para fins Academicos.
 
  comandos no CMD
 
+
+```
+#!javascript
+
    npm install
+```
