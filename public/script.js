@@ -52,7 +52,7 @@ socket.on('user add', function (n) {
 socket.on('updateusers', function (data) {
   $('#list_users').empty();
   $.each(data, function (key, value) {
-    $('#list_users').append('<li class="list-group-item"> <span class="badge">1</span> <a href="#">'+key+'</a> </li>');
+    $('#list_users').append('<li> <a href="#">'+key+'</a> </li>');
   });
 });
 
