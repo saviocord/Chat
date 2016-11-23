@@ -1,6 +1,10 @@
 .modal {
   text-align: center;
 }
+
+.black {
+	background: black;
+}
 @media screen and (min-width: 200px) {
   .modal:before {
     display: inline-block;
