@@ -2,6 +2,8 @@
  * Javascript File
  */
 
+var socket = io.connect('/');
+
 function getName() {
   var name = list_names[Math.floor(Math.random() * list_names.length)];
   return name;
@@ -19,29 +21,30 @@ var disable_btn_login = function() {
 var login = function() {
   name = $('#usr').val();
   if(name != '') {
-    $('#myModal').modal('hide');
     socket.emit('adduser', name);
   }
+	socket.on('user exist', function (usr) {
+		$('#erro-login').empty().append(
+		'<div class="alert alert-danger alert-dismissable fade in">' +
+			'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+			'<strong>Aviso!</strong> Usuario ' + usr + ' já existe.' +
+		'</div>');
+		throw err;
+	});
+	if(!err) {
+		$('#myModal').modal('hide');
+	}
 }
 
 var name = getName();
-var socket = io.connect('/');
 
-$(function () {
-  $(document).ready(function(){
-
-    $('#usr').val(name);
-    $('#myModal').modal('show');
-
-    $('a').click(function(){
-      $('#myModal').modal('show');
-    });
-
-  });
-});
-
-socket.on('user exist', function (n) {
-  alert('usuario '+n+' ja existe.');
+$(function(){
+	$('#usr').val(name);
+	$('#myModal').modal('show');
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+	});
 });
 
 socket.on('user add', function (n) {
@@ -52,7 +55,7 @@ socket.on('user add', function (n) {
 socket.on('updateusers', function (data) {
   $('#list_users').empty();
   $.each(data, function (key, value) {
-    $('#list_users').append('<li> <a href="#">'+key+'</a> </li>');
+    $('#list_users').append('<li><a href="#">' + key + '</a> </li>');
   });
 });
 
