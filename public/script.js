@@ -7,6 +7,30 @@ var usr = {
 };
  
 var socket = io.connect('/');
+var name = getName();
+
+$(function(){
+	//Antes de carregar essa fun??o j? deveria rodar
+	if(!$("#wrapper").hasClass("toggled")) {
+		$('#menu-toggle').hide();
+	}
+	$('#usr').val(name);
+	$('#myModal').modal('show');
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+	});
+})
+.click(function(){
+	if(window.screen.availWidth < 500) {
+		if($("#wrapper").hasClass("toggled")){
+			$("#wrapper").toggleClass("toggled");
+			$('#menu-toggle').fadeIn(500);
+		} else {
+			$("#wrapper").toggleClass("toggled");
+			$('#menu-toggle').fadeOut(500);
+		}
+	}
+});
 
 function getName() {
   var name = list_names[Math.floor(Math.random() * list_names.length)];
@@ -40,16 +64,6 @@ var login = function() {
 	}
 }
 
-var name = getName();
-
-$(function(){
-	$('#usr').val(name);
-	$('#myModal').modal('show');
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-		$("#wrapper").toggleClass("toggled");
-	});
-});
 
 socket.on('user add', function (n) {
   $('#myModal').modal('hide');

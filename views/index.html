@@ -6,8 +6,9 @@
 
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="/css/bootstrap.css" />
-
+  <!-- <link rel="stylesheet" href="/css/bootstrap.css" /> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
   <link rel="stylesheet" href="/public/style.css">
   <script src="/socket.io/socket.io.js"></script>
   <script src="/public/list_names.js"></script>
@@ -22,10 +23,11 @@
 			</ul>
 		</div>
 
+		<button type="button" class="btn btn-primary btn-lg black" id="menu-toggle">
+			<span class="glyphicon glyphicon-menu-hamburger"></span>
+		</button>
+
 		<div id="page-content-wrapper">
-			<button type="button" class="btn btn-default" id="menu-toggle">
-				<span class="glyphicon glyphicon-menu-hamburger"></span>Fechar
-			</button>
 			<div class="container-fluid">
 				<div class="col-sm-9">
 					<h4>Messages</h4>
