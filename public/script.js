@@ -71,7 +71,7 @@ $(function () {
     $('#btn_message').click(function () {
       var message = $('#input_text').val();
       $('#input_text').val('');
-      socket.emit('sendchatbot', message);
+      socket.emit('sendchat', message);
     });
 });
 
@@ -80,7 +80,7 @@ $(function () {
       if (e.which == 13) {
         var message = $('#input_text').val();
         $('#input_text').val('');
-        socket.emit('sendchatbot', message);
+        socket.emit('sendchat', message);
       }
     });
 });

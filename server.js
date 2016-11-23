@@ -47,11 +47,13 @@ io.on('connection', function(socket){
     });
 	socket.on('sendchat', (message) => {
         io.emit('updatechat', socket.username, message);
-    });
-	socket.on('sendchatbot', (message) => {
-		//usando a função aqui
 		var reply = bot.respondTo(message);
-        io.to(socket.id).emit('updatechat', 'chat ', reply);
+		//colocando delay para a resposta do chat
+		var latency = Math.floor((Math.random() * 400) + 300);
+		setTimeout(function() { 
+			io.to(socket.id).emit('updatechat', 'chat ', reply)
+		},latency);
+		
     });
 });
 
