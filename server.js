@@ -2,16 +2,14 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var bot = require('./public/chat-bot.js');
 
 const usernames = {};
-
 
 app.use('/public', express.static('public'));
 app.use('/js', express.static(__dirname + '/public/bootstrap/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/public/bootstrap/css'));
-
-var bot = new chatBot();
 
 app.get('/', function(req, res) {
 
