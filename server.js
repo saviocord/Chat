@@ -5,10 +5,13 @@ var io = require('socket.io')(http);
 
 const usernames = {};
 
+
 app.use('/public', express.static('public'));
 app.use('/js', express.static(__dirname + '/public/bootstrap/js'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/public/bootstrap/css'));
+
+var bot = new chatBot();
 
 app.get('/', function(req, res) {
 
@@ -47,7 +50,14 @@ io.on('connection', function(socket){
 	socket.on('sendchat', (message) => {
         io.emit('updatechat', socket.username, message);
     });
+	socket.on('sendchatbot', (message) => {
+		//usando a função aqui
+		var reply = bot.respondTo(message);
+        io.to(socket.id).emit('updatechat', 'chat ', reply);
+    });
 });
+
+
 
 http.listen(8081, function() {
 	console.log('Executando o servidor...');
