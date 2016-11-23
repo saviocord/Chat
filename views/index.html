@@ -14,30 +14,31 @@
   <script src="/public/script.js"></script>
 </head>
 <body>
-	
+	<div id="wrapper">
 
-<div class="container-fluid">
-	<div class="row content">
-		
-		<div class="col-sm-3 sidenav">
-			<h4>Users</h4>
-			
-			<ul class="nav nav-pills nav-stacked" id="list_users">
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav" id="list_users">
+				<li class="sidebar-brand">
+				</li>
 			</ul>
 		</div>
-		
-		<div class="col-sm-9">
-			<h4>Messages</h4>
-			<hr>
-			<ul id="conversation" style="list-style-type:none"></ul>
-			<div >
-				<input type="text" class="form-control" placeholder="send message" id="input_text">
-				<button type="button" class="btn btn-primary" id='btn_message'>Send</button>
+
+		<div id="page-content-wrapper">
+			<button type="button" class="btn btn-default" id="menu-toggle">Fechar</button>
+			<div class="container-fluid">
+				<div class="col-sm-9">
+					<h4>Messages</h4>
+					<hr>
+					<ul id="conversation" style="list-style-type:none"></ul>
+					<div >
+						<input type="text" class="form-control" placeholder="send message" id="input_text">
+						<button type="button" class="btn btn-primary" id='btn_message'>Send</button>
+					</div>
+				</div>
 			</div>
 		</div>
-  
-   </div>
-</div>
+		
+	</div>
 
   <!-- Login -->
   <div class="container">
@@ -49,8 +50,9 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-	              <label for="usr">Username:</label>
-              <input type="text" class="form-control" placeholder="Type it username" id="usr" oninput="disable_btn_login()">
+							<label for="usr">Username:</label>
+              <input type="text" class="form-control" placeholder="Digite " id="usr" oninput="disable_btn_login()">
+							<div id="erro-login"></div>
 		        </div>
           </div>
           <div class="modal-footer">
