@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 var bot = require('./public/chat-bot.js');
 
 const usernames = {};
+usernames['chat-bot']='chat-bot';
 
 app.use('/public', express.static('public'));
 app.use('/js', express.static(__dirname + '/public/bootstrap/js'));
@@ -45,8 +46,8 @@ io.on('connection', function(socket){
 		io.emit('updateusers', usernames);
 		console.log('Usuario desconectado: '+socket.id);
     });
-	socket.on('sendchat', (message) => {
-        io.emit('updatechat', socket.username, message);
+	socket.on('sendchatbot', (message) => {
+        io.to(socket.id).emit('updatechat', socket.username, message);
 		var reply = bot.respondTo(message);
 		//colocando delay para a resposta do chat
 		var latency = Math.floor((Math.random() * 400) + 300);
@@ -54,6 +55,9 @@ io.on('connection', function(socket){
 			io.to(socket.id).emit('updatechat', 'chat ', reply)
 		},latency);
 		
+    });
+	socket.on('sendchat', (message) => {
+        io.emit('updatechat', socket.username, message);
     });
 });
 

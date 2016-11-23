@@ -1,12 +1,12 @@
 function respondTo(input) {
 	
 	input = input.toLowerCase();
-	console.log('input: '+input);	
-	if(RegExp('(hi|hello|hey|hola|howdy)(\\s|!|\\.|$)').test(input))
-		return "um... hi?";
+	
+	if(RegExp('(oi|ola|hei|ou)(\\s|!|\\.|$)').test(input))
+		return "ola em que posso ajudar?";
 		
-	if(RegExp('what[^ ]* up').test(input) || RegExp('sup').test(input) || RegExp('how are you').test(input))
-		return "this github thing is pretty cool, huh?";
+	if(RegExp('(quem e voce|quem e|voce|você)').test(input) || RegExp('(chat|chat-bot|chatbot)').test(input))
+		return "eu sou o chat-bot estou aqui para te ajudar com algumas duvidas.";
 		
 	if(RegExp('l(ol)+').test(input) || RegExp('(ha)+(h|$)').test(input) || RegExp('lmao').test(input))
 		return "what's so funny?";

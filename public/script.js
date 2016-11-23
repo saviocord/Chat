@@ -69,9 +69,13 @@ socket.on('updatechat', function (username, message) {
 
 $(function () {
     $('#btn_message').click(function () {
-      var message = $('#input_text').val();
-      $('#input_text').val('');
-      socket.emit('sendchat', message);
+        var message = $('#input_text').val();
+        $('#input_text').val('');
+        if(usr.key == 'chat-bot'){
+			socket.emit('sendchatbot', message);
+	    } else {
+			socket.emit('sendchat', message);
+	    }
     });
 });
 
@@ -80,12 +84,20 @@ $(function () {
       if (e.which == 13) {
         var message = $('#input_text').val();
         $('#input_text').val('');
-        socket.emit('sendchat', message);
+		if(usr.key == 'chat-bot'){
+			socket.emit('sendchatbot', message);
+		} else {
+			socket.emit('sendchat', message);
+		}
       }
     });
 });
 
 function setNameUser(key) {
 	usr.key = key;
-	alert(usr.key);
+	if(usr.key == 'chat-bot'){
+		$('#header_chat').text("Message in chatbot");
+	} else {
+		$('#header_chat').text("Message in users");
+	}
 }
