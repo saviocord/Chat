@@ -16,7 +16,6 @@
 </head>
 <body>
 	<div id="wrapper">
-
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav" id="list_users">
 				<li class="sidebar-brand">
@@ -25,7 +24,9 @@
 		</div>
 
 		<div id="page-content-wrapper">
-			<button type="button" class="btn btn-default" id="menu-toggle">Fechar</button>
+			<button type="button" class="btn btn-default" id="menu-toggle">
+				<span class="glyphicon glyphicon-menu-hamburger"></span>Fechar
+			</button>
 			<div class="container-fluid">
 				<div class="col-sm-9">
 					<h4>Messages</h4>
@@ -52,7 +53,7 @@
           <div class="modal-body">
             <div class="form-group">
 							<label for="usr">Username:</label>
-              <input type="text" class="form-control" placeholder="Digite " id="usr" oninput="disable_btn_login()">
+              <input type="text" class="form-control" placeholder="Digite seu nome" id="usr" oninput="disable_btn_login()">
 							<div id="erro-login"></div>
 		        </div>
           </div>

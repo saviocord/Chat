@@ -2,6 +2,10 @@
  * Javascript File
  */
 
+var usr = {
+	key : ""
+};
+ 
 var socket = io.connect('/');
 
 function getName() {
@@ -55,7 +59,7 @@ socket.on('user add', function (n) {
 socket.on('updateusers', function (data) {
   $('#list_users').empty();
   $.each(data, function (key, value) {
-    $('#list_users').append('<li><a href="#">' + key + '</a> </li>');
+    $('#list_users').append('<li><a onclick="setNameUser(\'' + key + '\');">' + key + '</a> </li>');
   });
 });
 
@@ -80,3 +84,8 @@ $(function () {
       }
     });
 });
+
+function setNameUser(key) {
+	usr.key = key;
+	alert(usr.key);
+}
