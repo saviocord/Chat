@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var bot = require('./public/chat-bot.js');
 
 const usernames = {};
 
@@ -17,6 +16,41 @@ app.get('/', function(req, res) {
 	var file = '/index.html';
 	res.sendFile( __dirname + dir + file );
 });
+
+var input;
+
+function match(regex) {
+	console.log('regex: '+regex);
+	return new RegExp(regex).test(input);
+}
+	
+function respondTo(input) {
+	
+	input = input.toLowerCase();
+	console.log('input: '+input);	
+	if(match('(hi|hello|hey|hola|howdy)(\\s|!|\\.|$)'))
+		return "um... hi?";
+		
+	if(match('what[^ ]* up') || match('sup') || match('how are you'))
+		return "this github thing is pretty cool, huh?";
+		
+	if(match('l(ol)+') || match('(ha)+(h|$)') || match('lmao'))
+		return "what's so funny?";
+		
+	if(match('^no+(\\s|!|\\.|$)'))
+		return "don't be such a negative nancy :(";
+		
+	if(match('(cya|bye|see ya|ttyl|talk to you later)'))
+		return ["alright, see you around", "good teamwork!"];
+		
+	if(match('(dumb|stupid|is that all)'))
+		return ["hey i'm just a proof of concept", "you can make me smarter if you'd like"];
+		
+	if(input == 'noop')
+		return;
+		
+	return input + " what?";
+}
 
 io.on('connection', function(socket){
 	console.log('Usuario conectado: '+socket.id);
@@ -47,11 +81,11 @@ io.on('connection', function(socket){
     });
 	socket.on('sendchat', (message) => {
         io.emit('updatechat', socket.username, message);
-    });
-	socket.on('sendchatbot', (message) => {
-		//usando a função aqui
-		var reply = bot.respondTo(message);
-        io.to(socket.id).emit('updatechat', 'chat ', reply);
+		
+		var reply = respondTo(message);
+
+		io.to(socket.id).emit('updatechat', 'chat ', reply);
+		
     });
 });
 
