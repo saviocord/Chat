@@ -17,33 +17,26 @@ app.get('/', function(req, res) {
 	res.sendFile( __dirname + dir + file );
 });
 
-var input;
-
-function match(regex) {
-	console.log('regex: '+regex);
-	return new RegExp(regex).test(input);
-}
-	
 function respondTo(input) {
 	
 	input = input.toLowerCase();
 	console.log('input: '+input);	
-	if(match('(hi|hello|hey|hola|howdy)(\\s|!|\\.|$)'))
+	if(RegExp('(hi|hello|hey|hola|howdy)(\\s|!|\\.|$)').test(input))
 		return "um... hi?";
 		
-	if(match('what[^ ]* up') || match('sup') || match('how are you'))
+	if(RegExp('what[^ ]* up').test(input) || RegExp('sup').test(input) || RegExp('how are you').test(input))
 		return "this github thing is pretty cool, huh?";
 		
-	if(match('l(ol)+') || match('(ha)+(h|$)') || match('lmao'))
+	if(RegExp('l(ol)+').test(input) || RegExp('(ha)+(h|$)').test(input) || RegExp('lmao').test(input))
 		return "what's so funny?";
 		
-	if(match('^no+(\\s|!|\\.|$)'))
+	if(RegExp('^no+(\\s|!|\\.|$)').test(input))
 		return "don't be such a negative nancy :(";
 		
-	if(match('(cya|bye|see ya|ttyl|talk to you later)'))
+	if(RegExp('(cya|bye|see ya|ttyl|talk to you later)').test(input))
 		return ["alright, see you around", "good teamwork!"];
 		
-	if(match('(dumb|stupid|is that all)'))
+	if(RegExp('(dumb|stupid|is that all)').test(input))
 		return ["hey i'm just a proof of concept", "you can make me smarter if you'd like"];
 		
 	if(input == 'noop')
@@ -81,10 +74,12 @@ io.on('connection', function(socket){
     });
 	socket.on('sendchat', (message) => {
         io.emit('updatechat', socket.username, message);
-		
 		var reply = respondTo(message);
-
-		io.to(socket.id).emit('updatechat', 'chat ', reply);
+		//colocando delay para a resposta do chat
+		var latency = Math.floor((Math.random() * 400) + 300);
+		setTimeout(function() { 
+			io.to(socket.id).emit('updatechat', 'chat ', reply)
+		},latency);
 		
     });
 });
