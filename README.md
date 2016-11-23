@@ -1,4 +1,4 @@
-# **Repositório referente a um Chat Interativo para fins Acadêmicos.** #
+# **Chat Interativo** #
 
  **Instale** nodejs.
 
