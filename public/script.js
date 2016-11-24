@@ -10,24 +10,17 @@ var socket = io.connect('/');
 var name = getName();
 
 $(function(){
-	//Antes de carregar essa fun??o j? deveria rodar
-	if(!$("#wrapper").hasClass("toggled")) {
+	if(!$("#wrapper").hasClass("toggled") && window.screen.availWidth >= 500) {
 		$('#menu-toggle').hide();
 	}
 	$('#usr').val(name);
 	$('#myModal').modal('show');
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-	});
 })
 .click(function(){
-	if(window.screen.availWidth < 500) {
-		if($("#wrapper").hasClass("toggled")){
+	if(window.screen.availWidth < 500 && !$('#myModal').hasClass('in')) {
+		if(!$('#menu-toggle').is(':visible')) {
 			$("#wrapper").toggleClass("toggled");
 			$('#menu-toggle').fadeIn(500);
-		} else {
-			$("#wrapper").toggleClass("toggled");
-			$('#menu-toggle').fadeOut(500);
 		}
 	}
 });
@@ -114,4 +107,9 @@ function setNameUser(key) {
 	} else {
 		$('#header_chat').text("Message in users");
 	}
+}
+
+function openMenu() {
+	$("#wrapper").toggleClass("toggled");
+	$('#menu-toggle').fadeOut(500);
 }
