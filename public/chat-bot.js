@@ -2,28 +2,25 @@ function respondTo(input) {
 	
 	input = input.toLowerCase();
 	
-	if(RegExp('(oi|ola|hei|ou)(\\s|!|\\.|$)').test(input))
+	if(RegExp('(oi|ola|hei|ou|opa|alo)(\\s|!|\\.|$)').test(input))
 		return "ola em que posso ajudar?";
 		
-	if(RegExp('(quem e voce|quem e|voce|você)').test(input) || RegExp('(chat|chat-bot|chatbot)').test(input))
+	if(RegExp('(quem e voce|quem é voce|quem e|voce|voçe|você|chat|chat-bot|chatbot)(\\s|[?]|$)').test(input))
 		return "eu sou o chat-bot estou aqui para te ajudar com algumas duvidas.";
 		
-	if(RegExp('l(ol)+').test(input) || RegExp('(ha)+(h|$)').test(input) || RegExp('lmao').test(input))
-		return "what's so funny?";
+	if(RegExp('(exemplo|exemplos|exemplifique|ex|alguns|algum)(\\s|\\.|de|de um|de alguns|alguns)*(?=sistema operacional|so|sistemas operacionais|sistemas operacinal|s.o)').test(input))
+		return "tenho varios exemplos de SO para te falar, mas vou te dizer alguns mais utilizados: MacOS,CentOS, Linux, Microsoft Windows, Solaris, Unix";
+	
+    if(RegExp('(faz|função|funções|funcao|funcoes|funçao|funçoes)(\\s|\\.|de|do|dos|um)*(?=sistema operacional|so|sistemas operacionais|sistemas operacinal|s.o)').test(input))
+		return "Um SO tem varias funcionalidade, mas dentre as principais estão Gerenciamento de processos, gerenciamento de memória, gerenciamento de recursos, entrada e saída de dados, sistema de arquivos.";
+	
+	if(RegExp('(sistema operacional|so|s.o)(\\s|[?]|$)').test(input))
+		return "Pelas minhas definiçoes um SO é um programa ou um conjunto de programas cuja função é gerenciar os recursos do sistema.";
 		
-	if(RegExp('^no+(\\s|!|\\.|$)').test(input))
-		return "don't be such a negative nancy :(";
+	if(RegExp('(vtnc|cú|cu|desgraça|poha|buceta|pinto|penis|caralho|inferno|satanas|puta|rapariga|vadia|vagabundo|burro|idiota)').test(input))
+		return "Voce parece estar Exaltado. Nao fale isso novamente";
 		
-	if(RegExp('(cya|bye|see ya|ttyl|talk to you later)').test(input))
-		return ["alright, see you around", "good teamwork!"];
-		
-	if(RegExp('(dumb|stupid|is that all)').test(input))
-		return ["hey i'm just a proof of concept", "you can make me smarter if you'd like"];
-		
-	if(input == 'noop')
-		return;
-		
-	return input + " what?";
+	return " nao compreendi a expressão '"+input+"' .";
 }
 
 module.exports = {
