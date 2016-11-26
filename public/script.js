@@ -66,12 +66,17 @@ socket.on('user add', function (n) {
 socket.on('updateusers', function (data) {
   $('#list_users').empty();
   $.each(data, function (key, value) {
-    $('#list_users').append('<li><a onclick="setNameUser(\'' + key + '\');">' + key + '</a> </li>');
+	n = key;
+	if (n.length > 30){
+		n = key.substring(0, 30);
+		n = n+'...';
+	}
+    $('#list_users').append('<li><a onclick="setNameUser(\'' + n + '\');">' + n + '</a> </li>');
   });
 });
 
 socket.on('updatechat', function (username, message) {
-  $('#conversation').append($('<li>').text(username+' diz: '+message));
+  $('#conversation').append('<li><b>' + username+ ' disse: </b>' +message+ '</li>');
 });
 
 $(function () {
