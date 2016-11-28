@@ -16,7 +16,7 @@ function respondTo(input) {
 	input = input.toLowerCase();
 	
 	if(RegExp('(help|ajuda)').test(input))
-		return "<a href=#>clique aqui para mais informações</a>";
+		return "<a href=# onclick=\"abrirHelp();\">clique aqui para mais informações</a>";
 	
 	if(RegExp('(oi|ola|hei|ou|opa|alo)(\\s|!|\\.|$)').test(input))
 		return " Ola em que posso ajudar?";

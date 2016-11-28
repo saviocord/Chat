@@ -13,6 +13,7 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="/public/list_names.js"></script>
   <script src="/public/script.js"></script>
+	<script src="/public/help.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -32,7 +33,8 @@
 				<div class="col-sm-9">
 					<h4 id="header_chat">Message in users</h4>
 					<hr>
-					<ul id="conversation" style="list-style-type:none"></ul>
+					<ul id="conversation_chat" style="list-style-type:none"></ul>
+					<ul id="conversation_users" style="list-style-type:none"></ul>
 					<div >
 						<input type="text" class="form-control" placeholder="send message" id="input_text">
 						<button type="button" class="btn btn-primary" id='btn_message'>Send</button>
@@ -43,6 +45,9 @@
 		
 	</div>
 
+	<div id="help">
+	</div>
+	
   <!-- Login -->
   <div class="container">
     <div class="modal fade" id="myModal" role="dialog" data-backdrop="static">

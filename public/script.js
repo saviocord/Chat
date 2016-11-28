@@ -10,14 +10,14 @@ var socket = io.connect('/');
 var name = getName();
 
 $(function(){
-	if(!$("#wrapper").hasClass("toggled") && window.screen.availWidth >= 500) {
+	if(!$("#wrapper").hasClass("toggled") && window.innerWidth >= 500) {
 		$('#menu-toggle').hide();
 	}
 	$('#usr').val(name);
 	$('#myModal').modal('show');
 })
 .click(function(){
-	if(window.screen.availWidth < 500 && !$('#myModal').hasClass('in')) {
+	if(window.innerWidth < 500 && !$('#myModal').hasClass('in')) {
 		if(!$('#menu-toggle').is(':visible')) {
 			$("#wrapper").toggleClass("toggled");
 			$('#menu-toggle').fadeIn(500);
@@ -76,7 +76,7 @@ socket.on('updateusers', function (data) {
 });
 
 socket.on('updatechat', function (username, message) {
-  $('#conversation').append('<li><b>' + username+ ' disse: </b>' +message+ '</li>');
+  $('#conversation').append('<li><b>' + username + ' disse: </b>' +message+ '</li>');
 });
 
 $(function () {
@@ -108,13 +108,19 @@ $(function () {
 function setNameUser(key) {
 	usr.key = key;
 	if(usr.key == 'chat-bot'){
-		$('#header_chat').text("Message in chatbot");
+		$('#header_chat').text("Mensagem do Chat");
 	} else {
-		$('#header_chat').text("Message in users");
+		$('#header_chat').text("Mensagem dos Usu?rios");
 	}
 }
 
+
 function openMenu() {
-	$("#wrapper").toggleClass("toggled");
+	$('#wrapper').toggleClass('toggled');
 	$('#menu-toggle').fadeOut(500);
+}
+
+function abrirHelp() {
+	$('#help').append(help);
+	$('#myHelp').modal('show');
 }

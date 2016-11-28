@@ -52,7 +52,7 @@ io.on('connection', function(socket){
 		//colocando delay para a resposta do chat
 		var latency = Math.floor((Math.random() * 400) + 300);
 		setTimeout(function() { 
-			io.to(socket.id).emit('updatechat', 'chat ', reply)
+			io.to(socket.id).emit('updatechat', 'Chat', reply)
 		},latency);
 		
     });
@@ -60,8 +60,6 @@ io.on('connection', function(socket){
         io.emit('updatechat', socket.username, message);
     });
 });
-
-
 
 http.listen(8081, function() {
 	console.log('Executando o servidor...');
