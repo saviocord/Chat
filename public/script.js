@@ -76,6 +76,12 @@ socket.on('updateusers', function (data) {
 });
 
 socket.on('updatechat', function (username, message) {
+	if (usr.key != 'chat-bot') {
+		$('#conversation').append('<li><b>' + username+ ' disse: </b>' +message+ '</li>');
+	}
+});
+
+socket.on('updatechatbot', function (username, message) {
   $('#conversation').append('<li><b>' + username+ ' disse: </b>' +message+ '</li>');
 });
 

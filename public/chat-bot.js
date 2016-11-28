@@ -53,8 +53,8 @@ function respondTo(input) {
 		return [" Refere-se a uma situação em que ocorre um impasse, e dois ou mais processos ficam impedidos de continuar suas execuções"+
 	           "ou seja, ficam bloqueados, Um ou mais processos está bloqueado à espera de um evento que somente pode ser causado por um outro processos"];
 	
-	if(RegExp('()').test(input))
-		return " Ola em que posso ajudar?";
+	/*if(RegExp('()').test(input))
+		return " Ola em que posso ajudar?";*/
 	
 	if(RegExp('(estado|estados)(\\s|\\.|de|do|dos|de um)*(?=processo|processos)').test(input))
 		return [" Um processo ativo pode encontrar-se em três estados diferentes: "+
