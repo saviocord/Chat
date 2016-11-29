@@ -2,10 +2,10 @@
  * Javascript File
  */
 
-var usr = {
+var talkingTo = {
 	key : ""
 };
- 
+var yourName = "";
 var socket = io.connect('/');
 var name = getName();
 
@@ -65,10 +65,10 @@ var login = function() {
 	}
 }
 
-
 socket.on('user add', function (n) {
   $('#myModal').modal('hide');
-  $('#name_user').append('<a class="navbar-brand" >'+n+'</a>');
+  yourName = n;
+  //$('#name_user').append('<a class="navbar-brand" >'+n+'</a>');
 });
 
 socket.on('updateusers', function (data) {
@@ -76,7 +76,7 @@ socket.on('updateusers', function (data) {
   $.each(data, function (key, value) {
 	n = key;
 	if (n.length > 30){
-		n = key.substring(0, 30);
+		n = n.substring(0, 30);
 		n = n+'...';
 	}
 	$('#list_users').append('<li><a onclick="setNameUser(\'' + n + '\');">' + n + '</a> </li>');
@@ -84,7 +84,7 @@ socket.on('updateusers', function (data) {
 });
 
 socket.on('updatechat', function (username, message) {
-	if (usr.key != 'chat-bot') {
+	if (talkingTo.key != 'chat-bot') {
 		$('#conversation').append('<tr><td><b>' + username+ ' disse: </b>' +message+ '</td></tr>');
 	}
 });
@@ -97,7 +97,7 @@ $(function () {
     $('#btn_message').click(function () {
         var message = $('#input_text').val();
         $('#input_text').val('');
-        if(usr.key == 'chat-bot'){
+        if(talkingTo.key == 'chat-bot'){
 			socket.emit('sendchatbot', message);
 	    } else {
 			socket.emit('sendchat', message);
@@ -110,7 +110,7 @@ $(function () {
       if (e.which == 13) {
         var message = $('#input_text').val();
         $('#input_text').val('');
-		if(usr.key == 'chat-bot'){
+		if(talkingTo.key == 'chat-bot'){
 			socket.emit('sendchatbot', message);
 		} else {
 			socket.emit('sendchat', message);
@@ -121,8 +121,8 @@ $(function () {
 
 function setNameUser(key) {
 	$('#header_chat').empty();
-	usr.key = key;
-	if(usr.key == 'chat-bot'){
+	talkingTo.key = key;
+	if(talkingTo.key == 'chat-bot'){
 		$('#header_chat').text("Mensagens do Chat");
 	} else {
 		$('#header_chat').text("Mensagens dos Usuarios");

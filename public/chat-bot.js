@@ -2,13 +2,16 @@
 	saudação
 	exemplos de SO
 	funçoes do SO
-	conceito de threade
-	conceito de escalonamento
-	definição de escalonamento preemptivo e não preemptivo
-	conceito de semáforo
-	estados do processo
+	conceito de Threade
+	conceito de Escalonamento
+	definição de Escalonamento preemptivo e não preemptivo
+	conceito de Semáforo
+	estados do Processo
 	conceito de SO
-	definição de deadlock
+	definição de Deadlock
+	conceito de Memória Virtual
+	definição de Paginação
+	definição de Segmentação
 	
 */
 function respondTo(input) {
@@ -17,16 +20,7 @@ function respondTo(input) {
 	
 	if(RegExp('(help|ajuda)').test(input))
 		return "<a href=# onclick=\"abrirHelp();\">clique aqui para mais informações</a>";
-	
-	if(RegExp('(oi|ola|hei|ou|opa|alo)(\\s|!|\\.|$)').test(input))
-		return " Ola em que posso ajudar?";
 		
-	if(RegExp('(quem e voce|quem é voce|quem e|voce|voçe|você|chat|chat-bot|chatbot)(\\s|[?]|$)').test(input))
-		return " Eu sou o chat-bot estou aqui para te ajudar com algumas duvidas.";
-		
-	if(RegExp('(exemplo|exemplos|exemplifique|ex|alguns|algum)(\\s|\\.|de|de um|de alguns|alguns)*(?=sistema operacional|so|sistemas operacionais|sistemas operacinal|s.o)').test(input))
-		return " Tenho varios exemplos de SO para te falar, mas vou te dizer alguns mais utilizados: MacOS,CentOS, Linux, Microsoft Windows, Solaris, Unix";
-	
 	if(RegExp('thread').test(input))
 		return [" Thread é uma forma de um processo dividir a si mesmo em duas ou mais tarefas que podem ser executadas concorrencialmente "+
 	            "O conceito de thread foi introduzido na tentativa de reduzir o tempo gasto na criação, eliminação e troca de contexto de processos nas "+
@@ -49,16 +43,35 @@ function respondTo(input) {
 		return [" Um semáforo é uma variável inteira, não-negativa, que só pode ser manipulada por "+
 				"duas instruções atômicas: DOWN e UP. A instrução UP incrementa uma unidade ao valor do semáforo, enquanto DOWN decrementa a variável."];
 	
-	if(RegExp('Deadlock').test(input))
+	if(RegExp('deadlock').test(input))
 		return [" Refere-se a uma situação em que ocorre um impasse, e dois ou mais processos ficam impedidos de continuar suas execuções"+
 	           "ou seja, ficam bloqueados, Um ou mais processos está bloqueado à espera de um evento que somente pode ser causado por um outro processos"];
 	
 	/*if(RegExp('()').test(input))
 		return " Ola em que posso ajudar?";*/
 	
+    if(RegExp('(memória virtual|memoria virtual)').test(input))
+	    return ["Memória Virtual é uma técnica sofisticada e poderosa de gerência de memória, onde as memórias principal e secundária são combinadas, "+ 
+	            "dando ao usuário a ilusão de existir uma memória muito maior que a capacidade real da memória principal."];
+	
+	if(RegExp('(paginacao|paginação|paginaçao|paginacão)').test(input))			
+	    return "É a técnica de gerência de memória onde o espaço de endereçamento virtual e o real são divididos em blocos do mesmo tamanho.";
+	
+	if(RegExp('(segmentacao|segmentação|segmentaçao|segmentacão)').test(input))			
+	    return "É a técnica de gerência de memória onde o espaço de endereçamento virtual é dividido em blocos de tamanhos diferentes";
+	
 	if(RegExp('(estado|estados)(\\s|\\.|de|do|dos|de um)*(?=processo|processos)').test(input))
 		return [" Um processo ativo pode encontrar-se em três estados diferentes: "+
 				"Rodando (Execução ou running), Pronto (ready), Bloqueado (Espera ou wait)."];
+				
+	if(RegExp('(oi|ola|hei|ou|opa|alo)(\\s|!|\\.|$)').test(input))
+		return " Ola em que posso ajudar?";
+		
+	if(RegExp('(quem e voce|quem é voce|quem e|voce|voçe|você|chat|chat-bot|chatbot)(\\s|[?]|$)').test(input))
+		return " Eu sou o chat-bot estou aqui para te ajudar com algumas duvidas.";
+	
+	if(RegExp('(exemplo|exemplos|exemplifique|ex|alguns|algum)(\\s|\\.|de|de um|de alguns|alguns)*(?=sistema operacional|so|sistemas operacionais|sistemas operacinal|s.o)').test(input))
+		return " Tenho varios exemplos de SO para te falar, mas vou te dizer alguns mais utilizados: MacOS,CentOS, Linux, Microsoft Windows, Solaris, Unix";
 	
 	if(RegExp('(faz|função|funções|funcao|funcoes|funçao|funçoes)(\\s|\\.|de|do|dos|um)*(?=sistema operacional|so|sistemas operacionais|sistemas operacinal|s.o)').test(input))
 		return [" Um SO tem varias funcionalidade, mas dentre as principais estão Gerenciamento de processos, gerenciamento de memória, gerenciamento de recursos, "+

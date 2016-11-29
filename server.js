@@ -36,7 +36,7 @@ io.on('connection', function(socket){
 		} else {
 			socket.username = username;
 			usernames[username] = username;
-			io.to(socket.id).emit('user add',username);
+			io.to(socket.id).emit('user add',username); 
 			io.emit('updateusers',usernames);
 			console.log('add user:'+username);
 		}
@@ -47,7 +47,7 @@ io.on('connection', function(socket){
 		console.log('Usuario desconectado: '+socket.id);
     });
 	socket.on('sendchatbot', (message) => {
-        io.to(socket.id).emit('updatechat', socket.username, message);
+        io.to(socket.id).emit('updatechatbot', socket.username, message);
 		var reply = bot.respondTo(message);
 		//colocando delay para a resposta do chat
 		setTimeout(function() { 
