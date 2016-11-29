@@ -12,6 +12,10 @@ var name = getName();
 $(function(){
 	if(!$("#wrapper").hasClass("toggled") && window.innerWidth >= 500) {
 		$('#menu-toggle').hide();
+	} else {
+		$("#menu-bottom").toggleClass("toggled");
+		$("#menu-top").toggleClass("toggled");
+		$("#page-content-wrapper").toggleClass("toggled");
 	}
 	$('#usr').val(name);
 	$('#myModal').modal('show');
@@ -20,6 +24,9 @@ $(function(){
 	if(window.innerWidth < 500 && !$('#myModal').hasClass('in')) {
 		if(!$('#menu-toggle').is(':visible')) {
 			$("#wrapper").toggleClass("toggled");
+			$("#menu-bottom").toggleClass("toggled");
+			$("#menu-top").toggleClass("toggled");
+			$("#page-content-wrapper").toggleClass("toggled");
 			$('#menu-toggle').fadeIn(500);
 		}
 	}
@@ -39,6 +46,7 @@ var disable_btn_login = function() {
   }
 }
 
+//Login
 var login = function() {
   name = $('#usr').val();
   if(name != '') {
@@ -48,7 +56,7 @@ var login = function() {
 		$('#erro-login').empty().append(
 		'<div class="alert alert-danger alert-dismissable fade in">' +
 			'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-			'<strong>Aviso!</strong> Usuario ' + usr + ' j? existe.' +
+			'<strong>Aviso!</strong> Usuario ' + usr + ' já existe.' +
 		'</div>');
 		throw err;
 	});
@@ -71,7 +79,7 @@ socket.on('updateusers', function (data) {
 		n = key.substring(0, 30);
 		n = n+'...';
 	}
-    $('#list_users').append('<li><a onclick="setNameUser(\'' + n + '\');">' + n + '</a> </li>');
+	$('#list_users').append('<li><a onclick="setNameUser(\'' + n + '\');">' + n + '</a> </li>');
   });
 });
 
@@ -124,6 +132,9 @@ function setNameUser(key) {
 
 function openMenu() {
 	$('#wrapper').toggleClass('toggled');
+	$("#menu-bottom").toggleClass("toggled");
+	$("#menu-top").toggleClass("toggled");
+	$("#page-content-wrapper").toggleClass("toggled");
 	$('#menu-toggle').fadeOut(500);
 }
 

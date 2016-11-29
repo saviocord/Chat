@@ -24,7 +24,7 @@
 			</ul>
 		</div>
 
-		<nav class="navbar navbar-fixed-top">
+		<nav id="menu-top" class="navbar navbar-fixed-top">
 			<button type="button" class="btn btn-lg black" id="menu-toggle" onclick="openMenu();">
 				<span class="glyphicon glyphicon-menu-hamburger"></span>
 			</button>
@@ -35,13 +35,17 @@
 				<thead id="header_chat"><h3 id="header_chat">Mensagens dos Usuarios</h3><thead>
 				<tbody></tbody>
 			</table>
-			<nav class="navbar navbar-inverse navbar-fixed-bottom">
-				<input type="text" class="form-control" placeholder="Envie uma mensagem" id="input_text">
-				<button type="button" class="btn btn-primary" id='btn_message'>Enviar</button>
-			</nav>
 		</div>
-		
 	</div>
+	
+	<nav id="menu-bottom" class="navbar navbar-inverse navbar-fixed-bottom">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Envie uma mensagem" id="input_text">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-primary" id='btn_message'>Enviar</button>
+      </span>
+		</div>
+	</nav>
 
 	<!-- Help -->
 	<div id="help"></div>

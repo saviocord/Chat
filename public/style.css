@@ -20,6 +20,21 @@
 	background-color: black;
 }
 
+.navbar-fixed-bottom, .navbar-fixed-top {
+	margin-left: 250px;
+	padding: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.navbar-fixed-bottom.toggled, .navbar-fixed-top.toggled{
+	margin-left: 0px;
+}
+
+#page-content-wrapper.toggled {
+	padding-top: 40px;
+}
+
 @media screen and (min-width: 200px) {
   .modal:before {
     display: inline-block;
@@ -60,6 +75,7 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+		height: 100%;
 }
 
 #wrapper.toggled {
@@ -86,15 +102,16 @@
 }
 
 #page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-		padding-top: 30px;
+	width: 100%;
+	position: absolute;
+	padding: 15px;
+	padding-top: 0px;
+	height: 100%;
 }
 
 #wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
+	position: absolute;
+	margin-right: -250px;
 }
 
 /* Sidebar Styles */
