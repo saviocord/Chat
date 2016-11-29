@@ -16,6 +16,10 @@
 	color: white;
 }
 
+.navbar-inverse {
+	background-color: black;
+}
+
 @media screen and (min-width: 200px) {
   .modal:before {
     display: inline-block;
@@ -85,6 +89,7 @@
     width: 100%;
     position: absolute;
     padding: 15px;
+		padding-top: 30px;
 }
 
 #wrapper.toggled #page-content-wrapper {

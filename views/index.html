@@ -24,29 +24,27 @@
 			</ul>
 		</div>
 
-		<button type="button" class="btn btn-lg black" id="menu-toggle" onclick="openMenu();">
-			<span class="glyphicon glyphicon-menu-hamburger"></span>
-		</button>
+		<nav class="navbar navbar-fixed-top">
+			<button type="button" class="btn btn-lg black" id="menu-toggle" onclick="openMenu();">
+				<span class="glyphicon glyphicon-menu-hamburger"></span>
+			</button>
+		</nav>
 
 		<div id="page-content-wrapper">
-			<div class="container-fluid">
-				<div class="col-sm-9">
-					<h4 id="header_chat">Message in users</h4>
-					<hr>
-					<ul id="conversation_chat" style="list-style-type:none"></ul>
-					<ul id="conversation_users" style="list-style-type:none"></ul>
-					<div >
-						<input type="text" class="form-control" placeholder="send message" id="input_text">
-						<button type="button" class="btn btn-primary" id='btn_message'>Send</button>
-					</div>
-				</div>
-			</div>
+			<table id="conversation" class="table table-striped">
+				<thead id="header_chat"><h3 id="header_chat">Mensagens dos Usuarios</h3><thead>
+				<tbody></tbody>
+			</table>
+			<nav class="navbar navbar-inverse navbar-fixed-bottom">
+				<input type="text" class="form-control" placeholder="Envie uma mensagem" id="input_text">
+				<button type="button" class="btn btn-primary" id='btn_message'>Enviar</button>
+			</nav>
 		</div>
 		
 	</div>
 
-	<div id="help">
-	</div>
+	<!-- Help -->
+	<div id="help"></div>
 	
   <!-- Login -->
   <div class="container">

@@ -25,7 +25,7 @@ io.on('connection', function(socket){
 		console.log('Usuario:'+socket.id+'  msg:'+msg+'  msg_pvd:'+msg_pvd);
 		if (msg) {
 			io.emit('chat message','mensagem publica: '+ msg);
-		} else{
+		} else {
 			io.to(socket.id).emit('chat message','mensagem privada: '+ msg_pvd);
 		}
     });
@@ -50,10 +50,9 @@ io.on('connection', function(socket){
         io.to(socket.id).emit('updatechat', socket.username, message);
 		var reply = bot.respondTo(message);
 		//colocando delay para a resposta do chat
-		var latency = Math.floor((Math.random() * 400) + 300);
 		setTimeout(function() { 
-			io.to(socket.id).emit('updatechat', 'Chat', reply)
-		},latency);
+			io.to(socket.id).emit('updatechatbot', 'chat', reply)
+		},300);
 		
     });
 	socket.on('sendchat', (message) => {

@@ -48,7 +48,7 @@ var login = function() {
 		$('#erro-login').empty().append(
 		'<div class="alert alert-danger alert-dismissable fade in">' +
 			'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-			'<strong>Aviso!</strong> Usuario ' + usr + ' já existe.' +
+			'<strong>Aviso!</strong> Usuario ' + usr + ' j? existe.' +
 		'</div>');
 		throw err;
 	});
@@ -76,7 +76,13 @@ socket.on('updateusers', function (data) {
 });
 
 socket.on('updatechat', function (username, message) {
-  $('#conversation').append('<li><b>' + username + ' disse: </b>' +message+ '</li>');
+	if (usr.key != 'chat-bot') {
+		$('#conversation').append('<tr><td><b>' + username+ ' disse: </b>' +message+ '</td></tr>');
+	}
+});
+
+socket.on('updatechatbot', function (username, message) {
+  $('#conversation').append('<tr><td><b>' + username+ ' disse: </b>' +message+ '</td></tr>');
 });
 
 $(function () {
@@ -106,11 +112,12 @@ $(function () {
 });
 
 function setNameUser(key) {
+	$('#header_chat').empty();
 	usr.key = key;
 	if(usr.key == 'chat-bot'){
-		$('#header_chat').text("Mensagem do Chat");
+		$('#header_chat').text("Mensagens do Chat");
 	} else {
-		$('#header_chat').text("Mensagem dos Usu?rios");
+		$('#header_chat').text("Mensagens dos Usuarios");
 	}
 }
 
