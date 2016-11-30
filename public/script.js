@@ -79,7 +79,7 @@ socket.on('updateusers', function (data) {
 		n = n.substring(0, 30);
 		n = n+'...';
 	}
-	$('#list_users').append('<li><a onclick="setNameUser(\'' + n + '\');">' + n + '</a> </li>');
+	$('#list_users').append('<li><a onclick="setNameUser(\'' + n + '\');clearConversation();">' + n + '</a> </li>');
   });
 });
 
@@ -110,11 +110,11 @@ $(function () {
       if (e.which == 13) {
         var message = $('#input_text').val();
         $('#input_text').val('');
-		if(talkingTo.key == 'chat-bot'){
-			socket.emit('sendchatbot', message);
-		} else {
-			socket.emit('sendchat', message);
-		}
+				if(talkingTo.key == 'chat-bot'){
+					socket.emit('sendchatbot', message);
+				} else {
+					socket.emit('sendchat', message);
+				}
       }
     });
 });
@@ -127,6 +127,10 @@ function setNameUser(key) {
 	} else {
 		$('#header_chat').text("Mensagens dos Usuarios");
 	}
+}
+
+function clearConversation() {
+	$('#conversation').empty();
 }
 
 
